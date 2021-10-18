@@ -43,7 +43,7 @@ namespace LiveCurrencyExchangeRate
                 }
             };
 
-            //get exchange rates to euro from Turkish Central Bank
+            //get exchange rates to TRY from Turkish Central Bank
             try
             {
                 var httpClient = new HttpClient();
@@ -85,7 +85,7 @@ namespace LiveCurrencyExchangeRate
             //use only currencies that are supported by TCB
             var exchangeRateCurrency = ratesToTr.FirstOrDefault(rate => rate.CurrencyCode.Equals(exchangeRateCurrencyCode, StringComparison.InvariantCultureIgnoreCase));
             if (exchangeRateCurrency == null)
-                throw new Exception("Currency not found!");
+                throw new Exception("You can use TCB (Turkish Central Bank) exchange rate provider only when the primary exchange rate currency is supported by TCB.");
 
             //return result for the selected (not TRY) currency
             return ratesToTr.Select(rate => new ExchangeRate
