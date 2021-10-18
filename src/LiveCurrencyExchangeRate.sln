@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveCurrencyExchangeRate", "LiveCurrencyExchangeRate.csproj", "{1C8AD4C7-1C37-4E45-828E-90998A9552CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C8AD4C7-1C37-4E45-828E-90998A9552CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C8AD4C7-1C37-4E45-828E-90998A9552CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C8AD4C7-1C37-4E45-828E-90998A9552CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C8AD4C7-1C37-4E45-828E-90998A9552CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {57011901-1C7B-4356-9509-F39EC13FA0E3}
+	EndGlobalSection
+EndGlobal
