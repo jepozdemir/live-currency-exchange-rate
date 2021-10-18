@@ -89,7 +89,7 @@ namespace LiveCurrencyExchangeRate
             //use only currencies that are supported by ECB
             var exchangeRateCurrency = ratesToEuro.FirstOrDefault(rate => rate.CurrencyCode.Equals(exchangeRateCurrencyCode, StringComparison.InvariantCultureIgnoreCase));
             if (exchangeRateCurrency == null)
-                throw new Exception("Currency not found!");
+                throw new Exception("You can use ECB (European Central Bank) exchange rate provider only when the primary exchange rate currency is supported by ECB.");
 
             //return result for the selected (not euro) currency
             return ratesToEuro.Select(rate => new ExchangeRate
