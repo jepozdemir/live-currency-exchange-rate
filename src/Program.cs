@@ -19,7 +19,7 @@ namespace LiveCurrencyExchangeRate
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Provider : {provider.GetType().Name.ToUpper()}");
-                var rates = provider.GetCurrencyLiveRates("USD");
+                var rates = provider.GetCurrencyLiveRatesAsync("USD").Result;
                 PrintResults(rates);
             }
             Console.ResetColor();

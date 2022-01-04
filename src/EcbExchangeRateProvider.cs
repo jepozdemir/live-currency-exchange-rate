@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Xml;
 using Microsoft.Extensions.Logging;
 
@@ -27,7 +28,7 @@ namespace LiveCurrencyExchangeRate
 
         #region Methods
 
-        public IList<ExchangeRate> GetCurrencyLiveRates(string exchangeRateCurrencyCode)
+        public async Task<IList<ExchangeRate>> GetCurrencyLiveRatesAsync(string exchangeRateCurrencyCode)
         {
             if (string.IsNullOrEmpty(exchangeRateCurrencyCode))
                 throw new ArgumentNullException(exchangeRateCurrencyCode, nameof(exchangeRateCurrencyCode));
@@ -47,7 +48,7 @@ namespace LiveCurrencyExchangeRate
             try
             {
                 var httpClient = new HttpClient();
-                var stream = httpClient.GetStreamAsync("http://www.ecb.int/stats/eurofxref/eurofxref-daily.xml").Result;
+                var stream = await httpClient.GetStreamAsync("http://www.ecb.int/stats/eurofxref/eurofxref-daily.xml");
 
                 //load XML document
                 var document = new XmlDocument();

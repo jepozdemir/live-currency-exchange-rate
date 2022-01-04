@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Xml;
 using Microsoft.Extensions.Logging;
 
@@ -27,7 +28,7 @@ namespace LiveCurrencyExchangeRate
 
         #region Methods
 
-        public IList<ExchangeRate> GetCurrencyLiveRates(string exchangeRateCurrencyCode)
+        public async Task<IList<ExchangeRate>> GetCurrencyLiveRatesAsync(string exchangeRateCurrencyCode)
         {
             if (string.IsNullOrEmpty(exchangeRateCurrencyCode))
                 throw new ArgumentNullException(exchangeRateCurrencyCode, nameof(exchangeRateCurrencyCode));
@@ -47,7 +48,7 @@ namespace LiveCurrencyExchangeRate
             try
             {
                 var httpClient = new HttpClient();
-                var stream = httpClient.GetStreamAsync("http://www.tcmb.gov.tr/kurlar/today.xml").Result;
+                var stream = await httpClient.GetStreamAsync("http://www.tcmb.gov.tr/kurlar/today.xml");
 
                 //load XML document
                 var document = new XmlDocument();
@@ -65,10 +66,13 @@ namespace LiveCurrencyExchangeRate
                     if (!decimal.TryParse(currency["BanknoteSelling"].InnerText, NumberStyles.Currency, CultureInfo.InvariantCulture, out var currencyRate))
                         continue;
 
+                    if (!int.TryParse(currency["Unit"].InnerText, NumberStyles.Integer, CultureInfo.InvariantCulture, out var unit))
+                        continue;
+
                     ratesToTr.Add(new ExchangeRate()
                     {
                         CurrencyCode = currency.Attributes["Kod"].Value,
-                        Value = currencyRate,
+                        Value = currencyRate/unit,
                         LastModifiedDate = updateDate
                     });
                 }
@@ -91,7 +95,7 @@ namespace LiveCurrencyExchangeRate
             return ratesToTr.Select(rate => new ExchangeRate
             {
                 CurrencyCode = rate.CurrencyCode,
-                Value = Math.Round(rate.Value / exchangeRateCurrency.Value, 4),
+                Value = Math.Round(exchangeRateCurrency.Value/rate.Value, 4),
                 LastModifiedDate = rate.LastModifiedDate
             }).ToList();
         }
