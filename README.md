@@ -25,4 +25,4 @@ The article "How to Get Live Currency Exchange Rates in C#.NET" was authored by 
 
 ## Read More
 
-Explore the full article ["How to Get Live Currency Exchange Rates in C#.NET"](https://medium.com/@jepozdemir/how-to-get-live-currency-exchange-rates-in-c-net-c8026db1f588) for a comprehensive understanding of to fetching live currency exchange rates from European Central Bank and Turkish Central Bank.
+Explore the full article ["How to Get Live Currency Exchange Rates in C#.NET"](https://medium.com/@jepozdemir/how-to-get-live-currency-exchange-rates-in-c-net-c8026db1f588) for a comprehensive understanding of how to get live currency exchange rates from the European Central Bank and the Turkish Central Bank.
